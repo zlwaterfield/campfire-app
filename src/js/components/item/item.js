@@ -9,7 +9,8 @@ var eventConstants = require('../../constants/eventConstants');
 var Item = React.createClass({
   getInitialState: function () {
     return {
-      item: null
+      item: null,
+      colors: ['#23F0C7', '#EF767A', '#7D7ABC', '#6457A6', '#FFE347']
     }
   },
   componentDidMount: function() {
@@ -25,11 +26,35 @@ var Item = React.createClass({
     })
   },
   render:function(){
-    return (
-      <div>
-        <h1>Item: {this.state.item ? <h2>{this.state.item.name}</h2> : null }</h1>
-      </div>
-    )
+    var divStyle = {
+      backgroundColor: this.state.colors[Math.floor(Math.random()*this.state.colors.length)]
+    };
+    if(this.state.item) {
+      return (
+        <div className="item-container">
+          <div className="item-header" style={divStyle}>
+            <h1 className="title">{this.state.item.name}</h1>
+          </div>
+          <div className="item-content">
+            <div className="row">
+              <div className="col-md-6">
+                {this.state.item.description}
+              </div>
+              <div className="col-md-6">
+                <span>Price Current: {this.state.item.price_current}</span><br/>
+                <span>Location: {this.state.item.location}</span><br/>
+                <span>Url: {this.state.item.url}</span><br/>
+                <span>Venue: {this.state.item.venue}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      )
+    } else {
+      return (
+        <span>loading</span>
+      )
+    }
   }
 });
 

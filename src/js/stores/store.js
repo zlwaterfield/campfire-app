@@ -23,7 +23,7 @@ var AppStore = {
     eventEmitter.emit(event);
   },
   on: function(event, callback) {
-    eventEmitter.on(event, callback);
+    eventEmitter.on(event, callback); 
   },
   off: function(event, callback) {
     eventEmitter.removeListener(event, callback);

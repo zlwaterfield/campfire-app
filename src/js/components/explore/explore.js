@@ -13,7 +13,8 @@ var Explore = React.createClass({
   getInitialState:function() {
     return {
       menuList: null,
-      searchResults: null
+      searchResults: null,
+      loading: false
     }
   },
   componentDidMount: function() {
@@ -23,6 +24,11 @@ var Explore = React.createClass({
   componentWillUnmount: function() {
     store.off(eventConstants.LIST_RESULTS, this.fillSelectMenus);
   },
+  loading: function () {
+    this.setState({
+      loading: true
+    })
+  },
   fillSelectMenus: function () {
     this.setState({
       menuList: store.getLists()
@@ -30,14 +36,15 @@ var Explore = React.createClass({
   },
   handleChange: function (data) {
     this.setState({
-      searchResults: data
+      searchResults: data,
+      loading: false
     })
   },
   render:function(){
     return (
       <div>
         { this.state.menuList ? <Search onChange={this.handleChange} list={this.state.menuList}/> : null }
-        { this.state.searchResults ? <Results data={this.state.searchResults}/> : null }
+        { this.state.searchResults ? <Results data={this.state.searchResults} loading={this.state.loading} /> : null }
       </div>
     )
   }

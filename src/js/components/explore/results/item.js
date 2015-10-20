@@ -2,15 +2,18 @@
 var React = require('react');
 var Link = require('react-router').Link;
 var cityConstants = require('../../../constants/cityConstants.js')
+// ['#23F0C7', '#EF767A', '#7D7ABC', '#6457A6', '#FFE347']
 
 var Results = React.createClass({
   getInitialState: function() {
     return {
       date_formatted: null,
-      months: ["Jan", "Febr", "Mar", "Apr", "May", "June","July", "Aug", "Sept", "Oct", "Nov", "Dec"]
+      months: ["Jan", "Febr", "Mar", "Apr", "May", "June","July", "Aug", "Sept", "Oct", "Nov", "Dec"],
+      colors: ['#23F0C7', '#EF767A', '#7D7ABC', '#6457A6', '#FFE347']
     }
   },
   componentDidMount: function() {
+    console.log(this.props)
     this.setState({
       date_formatted: this.formatDate(this.props.item.date_start),
       cityName: cityConstants[this.props.item.geohash]
@@ -31,9 +34,12 @@ var Results = React.createClass({
     return month + ' ' + day + ' ' + year
   },
   render:function(){
+    var divStyle = {
+      backgroundColor: this.state.colors[Math.floor(Math.random()*this.state.colors.length)]
+    };
     return (
       <div className="item">
-        <div className="item-left"></div>
+        <div className="item-left" style={divStyle}></div>
         <div className="item-right">
           <h3>{this.props.item.name}</h3>
           <ul>

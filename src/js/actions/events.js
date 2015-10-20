@@ -15,17 +15,32 @@ var events = {
       return;
     }
     this.buildUrl(search);
-    base = 'conferences/cat1?';
+    base = 'conferences/1?';
     
     _.map(search, function (value, key) {
       switch (key) {
 
         case 'location':
-          base += 'geo=' + geohash[value];
+          if(!(value === 'all locations')) {
+            base += 'near=' + geohashConstants[value];
+          }
           break;
 
-        default:
-          base += dictionary[value];
+        case 'price':
+          if(!(value === 'all prices')) {
+            if(typeof value === 'number') {
+              base += 'price=' + value;
+            } else {
+              base += dictionary[value];
+            }
+          }
+          break;
+
+        case 'date':
+          if(!(value === 'all dates')) {
+            base += dictionary[value];
+          }
+          break;
       }
       base += '&';
     });
