@@ -8,6 +8,8 @@ var Search = React.createClass({
   render:function(){
     return (
       <div className="select-style">
+        <div className="search-icon">
+        </div>
         <select name={this.props.type} onChange={this.handChange} defaultValue={this.props.defaultValue}>
           <option value="Default" disabled>{this.props.type}</option>
           {this.props.list.list.map(function(item) {

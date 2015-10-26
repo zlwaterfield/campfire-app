@@ -10,16 +10,18 @@ var Results = React.createClass({
     return (
       <div className="results">
         <div className="row">
-          {this.props.loading ? <Loading /> : null }
-          {this.props.data.map(function(item, i) {
-            return (
-                <div className="col-lg-4 col-md-6 col-xs-12">
-                  <Link to='item' params={{ id:item.event_id }}>
-                    <Item item={item}/>
-                  </Link>
-                </div>
-              )
-          })}
+          <div className="col-lg-offset-1 col-lg-10 col-md-12">
+            {this.props.loading ? <Loading /> : null }
+            {this.props.data.map(function(item, i) {
+              return (
+                  <div className="col-md-6 col-xs-12">
+                    <Link to='item' params={{ id:item.event_id }}>
+                      <Item item={item}/>
+                    </Link>
+                  </div>
+                )
+            })}
+            </div>
         </div>
       </div>
     );
