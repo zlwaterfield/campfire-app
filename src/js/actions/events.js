@@ -44,8 +44,17 @@ var events = {
       }
       base += '&';
     });
+    base = base.replace(base.substring(base.length-1), "");
 
-    ajax.get(base, 'SEARCH_RESULTS', 'SEARCH_ERROR');
+    ajax.get(base, 'SEARCH_RESULTS', 'SEARCH_ERROR', false);
+  },
+  getMoreData: function(url, token) {
+    if(url.indexOf('page') > -1) {
+      url = url.substring(0, url.indexOf('page'))
+    } 
+    if(token) {
+      ajax.get(url + 'page=' + token, 'SEARCH_RESULTS', 'SEARCH_ERROR', true);
+    }
   },
   getSingleItem: function(id) {
     ajax.get('item/' + id, 'SEARCH_SINGLE_RESULTS', 'SEARCH_SINGE_ERROR');

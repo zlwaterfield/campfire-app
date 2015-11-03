@@ -7,7 +7,9 @@ var eventConstants = require('../constants/eventConstants');
 
 var searchResults = {};
 var searchSingleResults = {};
-var listResults = {};
+var listResults = {}
+var lastRequest = null
+var paginationToken = null
 
 var AppStore = {
   getResults: function() {
@@ -15,6 +17,12 @@ var AppStore = {
   },
   getItem: function() {
     return searchSingleResults[0];
+  },
+  getLastRequest: function() {
+    return  lastRequest;
+  },
+  getPaginationToken: function() {
+    return paginationToken;
   },
   getLists: function() {
     return  listResults;
@@ -31,10 +39,17 @@ var AppStore = {
 }
 
 dispatcher.register(function(payload){
+
   switch (payload.actionType) {
 
     case eventConstants.SEARCH_RESULTS:
-      searchResults = payload.results;
+      if(payload.page) {
+        searchResults = searchResults.concat(payload.results.r);
+      } else {
+        searchResults = payload.results.r;
+      }
+      lastRequest = payload.url,
+      paginationToken = payload.results.p
       AppStore.emitChange(eventConstants.SEARCH_RESULTS);
       break;
 

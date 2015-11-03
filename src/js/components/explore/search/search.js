@@ -70,11 +70,10 @@ var Search = React.createClass({
     return (
       <div className="search-header">
         <div className="search">
-          <img className="header-logo" src="images/logo.png" />
           <span className="search-title">UX Conferences</span>
-          { this.state.list ? <SelectMenu type="Price" onChange={this.handleChange} defaultValue={this.toTitleCase(this.state.priceDefault)} list={this.state.list[1]}/> : null }
-          { this.state.list ? <SelectMenu type="Location" onChange={this.handleChange} defaultValue={this.toTitleCase(this.state.locationDefault)} list={this.state.list[0]}/> : null }
-          { this.state.list ? <SelectMenu type="Date" onChange={this.handleChange} defaultValue={this.toTitleCase(this.state.dateDefault)} list={this.state.list[2]}/> : null }
+          { this.state.list ? <SelectMenu type="Price" onChange={this.handleChange} defaultValue={this.toTitleCase(this.state.priceDefault)} list={this.state.list[1]} imageUrl={'images/icons/cost.png'}/> : null }
+          { this.state.list ? <SelectMenu type="Location" onChange={this.handleChange} defaultValue={this.toTitleCase(this.state.locationDefault)} list={this.state.list[0]} imageUrl={'images/icons/location.png'}/> : null }
+          { this.state.list ? <SelectMenu type="Date" onChange={this.handleChange} defaultValue={this.toTitleCase(this.state.dateDefault)} list={this.state.list[2]} imageUrl={'images/icons/date.png'}/> : null }
         </div>
       </div>
     );

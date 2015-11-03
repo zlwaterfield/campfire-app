@@ -7,6 +7,7 @@ var App = React.createClass({
     return (
       <div>
         <RouteHandler params={this.props.params}/>
+        <div className="footer"></div>
       </div>
     )
   }

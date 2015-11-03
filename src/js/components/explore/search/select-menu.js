@@ -9,6 +9,7 @@ var Search = React.createClass({
     return (
       <div className="select-style">
         <div className="search-icon">
+          <img src={this.props.imageUrl} />
         </div>
         <select name={this.props.type} onChange={this.handChange} defaultValue={this.props.defaultValue}>
           <option value="Default" disabled>{this.props.type}</option>

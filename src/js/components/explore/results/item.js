@@ -13,7 +13,6 @@ var Results = React.createClass({
     }
   },
   componentDidMount: function() {
-    console.log(this.props)
     this.setState({
       date_formatted: this.formatDate(this.props.item.date_start),
       cityName: cityConstants[this.props.item.geohash]
@@ -38,14 +37,14 @@ var Results = React.createClass({
       backgroundColor: this.state.colors[Math.floor(Math.random()*this.state.colors.length)]
     };
     return (
-      <div className="item">
+      <div className="item" ref="item">
         <div className="item-left" style={divStyle}></div>
         <div className="item-right">
           <h3>{this.props.item.name}</h3>
           <ul>
-            <li>{this.props.item.location}, {this.state.cityName}</li>
-            <li>{this.props.item.price_current}</li>
-            <li>{this.state.date_formatted}</li>
+            <li><img src="images/icons/location.png" />{this.props.item.location}, {this.state.cityName}</li>
+            <li><img src="images/icons/date.png" />{this.state.date_formatted}</li>
+            <li><img src="images/icons/cost.png" />{this.props.item.price_current}</li>
           </ul>
         </div>
       </div>

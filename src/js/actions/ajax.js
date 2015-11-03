@@ -4,7 +4,7 @@ var dispatcher = require('../dispatcher/dispatcher');
 var eventConstants = require('../constants/eventConstants');
 
 var ajax = {
-  get: function(query, suc, err) {
+  get: function(query, suc, err, page) {
     // base = "http://localhost:3000/api/";
     base = "http://wilted.me/api/";
     url = base + query;
@@ -14,7 +14,9 @@ var ajax = {
         console.log( "success" );
         dispatcher.dispatch({
           actionType: eventConstants[suc],
-          results: data
+          results: data,
+          url:query,
+          page: page
         });
       })
       .fail(function(error) {
