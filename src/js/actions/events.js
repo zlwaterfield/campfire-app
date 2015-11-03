@@ -44,7 +44,7 @@ var events = {
       }
       base += '&';
     });
-    base = base.replace(base.substring(base.length-1), "");
+    base = base.substring(0, base.length-1);
 
     ajax.get(base, 'SEARCH_RESULTS', 'SEARCH_ERROR', false);
   },
@@ -53,7 +53,7 @@ var events = {
       url = url.substring(0, url.indexOf('page'))
     } 
     if(token) {
-      ajax.get(url + 'page=' + token, 'SEARCH_RESULTS', 'SEARCH_ERROR', true);
+      ajax.get(url + '&page=' + token, 'SEARCH_RESULTS', 'SEARCH_ERROR', true);
     }
   },
   getSingleItem: function(id) {
